@@ -391,7 +391,6 @@ window.JIA_DATA = {"meta":{"title":"家","author":"巴金","source_file":"家txt
       try {
         let saved = JSON.parse(localStorage.getItem(CODING_KEY)) || {};
         if (!localStorage.getItem(SEED_MIGRATION_KEY)) {
-          RESET_ON_SEED.forEach(id => delete saved[id]);
           saved = { ...ONLINE_SNAPSHOT_CODING, ...saved };
           localStorage.setItem(CODING_KEY, JSON.stringify(saved));
           localStorage.setItem(SEED_MIGRATION_KEY, "1");
