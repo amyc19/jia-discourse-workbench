@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#153f46">
-  <title>《家》话语研究工作台</title>
+  <title>《家》 | Discourse Research Workbench</title>
   <style>
     :root {
       --ink: #193239;
@@ -120,6 +120,19 @@
     .rank-score { font-size: .75rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 
     .lexicon-group + .lexicon-group { margin-top: 15px; }
+    .en { display: block; color: var(--ink-soft); font-family: Georgia, serif; font-size: .8em; font-weight: 400; line-height: 1.45; letter-spacing: 0; }
+    .en-inline { color: var(--ink-soft); font-family: Georgia, serif; font-weight: 400; }
+    h1 .en { font-size: clamp(1.05rem, 2vw, 1.55rem); line-height: 1.45; letter-spacing: 0; }
+    .subtitle-en { display: block; margin: 4px 0 7px; color: var(--ink); font-family: Georgia, serif; font-size: 1rem; line-height: 1.6; }
+    .glossary { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+    .glossary h3 { margin-bottom: 4px; }
+    .glossary table { margin-top: 9px; }
+    .glossary td:first-child { width: 32%; font-weight: 600; white-space: nowrap; }
+    .glossary td:nth-child(2) { width: 52%; }
+    .glossary td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+    .glossary .group-row td { color: var(--jade); background: rgba(31,107,104,.06); font-weight: 600; }
+    .glossary .group-row td:last-child { text-align: left; }
+    .glossary-note { margin-top: 10px; }
     .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 9px; }
 
     .search-row { display: grid; grid-template-columns: minmax(180px, 1fr) 160px auto; gap: 9px; }
@@ -219,52 +232,53 @@
     <header class="masthead">
       <div>
         <div class="kicker">Digital Humanities Research Workbench</div>
-        <h1>《家》话语研究工作台</h1>
-        <p class="subtitle">从全书检索进入章节重读：观察家族权威如何说话，以及反叛、自由与离开的语言如何分布。这里呈现的是研究过程，不是预设结论。</p>
+        <h1>《家》<span class="en">Discourse Research Workbench · Ba Jin’s <i>Family</i></span></h1>
+        <p class="subtitle"><span class="subtitle-en">An exploratory study of Gao Juehui in Ba Jin’s <i>Family</i>: how do selected scenes of resistance, sacrifice, and hope reveal his sense of what he can do? The 18-term lexicon guides close reading; word counts are starting points, not conclusions.</span>以高觉慧为中心，从“反抗”“牺牲”“希望”等词进入章节细读。18词研究词典帮助定位材料；出现次数只是重读的起点，并非研究结论。</p>
       </div>
-      <div class="privacy">私人研究版 · 暂勿公开全文</div>
+      <div class="privacy">Research draft · Chinese full text for private study / 研究草稿 · 暂勿公开全文</div>
     </header>
 
     <nav class="tabs" role="tablist" aria-label="网站栏目">
-      <button class="tab active" id="overview-tab" role="tab" aria-selected="true" aria-controls="overview-panel" type="button">语料概览</button>
-      <button class="tab" id="search-tab" role="tab" aria-selected="false" aria-controls="search-panel" type="button">检索与人工编码</button>
-      <button class="tab" id="method-tab" role="tab" aria-selected="false" aria-controls="method-panel" type="button">方法与限制</button>
+      <button class="tab active" id="overview-tab" role="tab" aria-selected="true" aria-controls="overview-panel" type="button">Overview / 语料概览</button>
+      <button class="tab" id="search-tab" role="tab" aria-selected="false" aria-controls="search-panel" type="button">Search & coding / 检索与人工编码</button>
+      <button class="tab" id="method-tab" role="tab" aria-selected="false" aria-controls="method-panel" type="button">Methods & limits / 方法与限制</button>
     </nav>
 
     <section id="overview-panel" role="tabpanel" aria-labelledby="overview-tab">
       <article class="card">
         <div class="stats">
-          <div class="stat"><strong id="stat-chapters">40</strong><span>恢复章节</span></div>
-          <div class="stat"><strong id="stat-chars">—</strong><span>清理后字符</span></div>
-          <div class="stat"><strong id="stat-terms">18</strong><span>本轮研究词</span></div>
-          <div class="stat"><strong id="stat-noise">9</strong><span>已移除页码噪音</span></div>
+          <div class="stat"><strong id="stat-chapters">40</strong><span>Chapters / 恢复章节</span></div>
+          <div class="stat"><strong id="stat-chars">—</strong><span>Chinese characters / 清理后字符</span></div>
+          <div class="stat"><strong id="stat-terms">18</strong><span>Research terms / 本轮研究词</span></div>
+          <div class="stat"><strong id="stat-noise">9</strong><span>Page-number artifacts removed / 已移除页码噪音</span></div>
         </div>
         <div class="card-head">
-          <div><h2>早期种子词在40章中的分布</h2><p class="hint">按每万字标准化；点击任意章节查看它的具体构成。柱高只提示重读入口，不等于文学意义。</p></div>
+          <div><h2>Early seed terms across 40 chapters <span class="en">早期种子词在40章中的分布</span></h2><p class="hint">Normalized per 10,000 Chinese characters. Select a chapter for its terms. The bars suggest where to read; they do not establish literary meaning.<br>按每万字标准化。点击章节查看构成；柱高只是重读线索，并非文学结论。</p></div>
         </div>
-        <div class="chart-wrap"><svg id="chapter-chart" viewBox="0 0 1040 330" role="img" aria-label="家族权威与反叛词汇在四十章中的分布图"></svg></div>
-        <div class="legend"><span><i></i>家族权威／压迫</span><span><i></i>反叛／出路</span></div>
+        <div class="chart-wrap"><svg id="chapter-chart" viewBox="0 0 1040 330" role="img" aria-label="Distribution of family authority and resistance seed terms across forty chapters / 家族权威与反叛词汇在四十章中的分布图"></svg></div>
+        <div class="legend"><span><i></i>Family authority / oppression · 家族权威／压迫</span><span><i></i>Resistance / possible paths · 反叛／出路</span></div>
       </article>
 
       <div class="grid" style="margin-top:18px">
         <div class="stack">
           <article class="card">
-            <div class="card-head"><div><h2>章节观察</h2><p class="hint">从图中选择章节，先看哪些词把它推到了前面。</p></div></div>
+            <div class="card-head"><div><h2>Chapter detail <span class="en">章节观察</span></h2><p class="hint">Select a chapter in the chart to see the terms behind its bars.<br>从图中选择章节，查看具体词语。</p></div></div>
             <div class="chapter-detail" id="chapter-detail"></div>
           </article>
           <article class="card">
-            <div class="card-head"><div><h2>本轮18词研究词典</h2><p class="hint">按压迫、行动、出路三条路径排列；点击词语即可查看原文和逐条标定。</p></div></div>
+            <div class="card-head"><div><h2>18-term research lexicon <span class="en">本轮18词研究词典</span></h2><p class="hint">Three paths: oppression and obedience; resistance and action; hope and ways out. Click a Chinese term to search the original text and inspect annotations. The number on a chip is its literal occurrence count.<br>点击中文词语可检索原文及标注；数字为字面出现次数。</p></div></div>
             <div id="lexicons"></div>
+            <div class="glossary" id="glossary" aria-label="Chinese–English research term glossary / 中英研究词对照表"></div>
           </article>
         </div>
         <aside class="stack">
           <article class="card">
-            <div class="card-head"><div><h2>优先重读章节</h2><p class="hint">按两类词汇总密度排序，只是机器推荐。</p></div></div>
+            <div class="card-head"><div><h2>Suggested chapters <span class="en">优先重读章节</span></h2><p class="hint">Ranked by the combined density of two early seed-term groups. This is a reading prompt, not an interpretation.<br>按两类早期种子词的总密度排序，仅供重读参考。</p></div></div>
             <div class="rank-list" id="rank-list"></div>
           </article>
           <article class="card">
-            <div class="section-label">当前最重要的提醒</div>
-            <p style="line-height:1.7;margin-bottom:0">本轮18词已逐条初标。高频词与同一场景里的重复词次需要回到原文核对；请在检索页抽查和修订。</p>
+            <div class="section-label">Reading note / 阅读提醒</div>
+            <p style="line-height:1.7;margin-bottom:0">The 18 terms have initial occurrence-level annotations. Repeated hits in a scene and high-frequency terms require checking against the Chinese text. Annotations are preliminary.<br>本轮18词已逐条初标。高频词和同一场景的重复词次仍需回到原文核对。</p>
           </article>
         </aside>
       </div>
@@ -370,6 +384,8 @@ window.JIA_DATA = {"meta":{"title":"家","author":"巴金","source_file":"家txt
     const DATA = window.JIA_DATA;
     const FOCUSED_LEXICONS = {"path1":{"label":"压迫与顺从秩序","terms":["压迫","命令","礼教","服从","忍受","牺牲"]},"path2":{"label":"反抗与行动","terms":["反抗","奋斗","自由","勇敢","革命","胜利"]},"path3":{"label":"希望与出路","terms":["希望","离开","未来","新路","社会","新青年"]}};
     const FOCUSED_TOTALS = {"压迫":9,"命令":18,"礼教":6,"服从":5,"忍受":25,"牺牲":46,"反抗":33,"奋斗":22,"自由":10,"勇敢":15,"革命":2,"胜利":22,"希望":94,"离开":34,"未来":3,"新路":3,"社会":28,"新青年":15};
+    const TERM_EN = {"压迫":"oppression","命令":"command / order","礼教":"traditional moral codes","服从":"obedience","忍受":"endurance","牺牲":"sacrifice","反抗":"resistance","奋斗":"struggle","自由":"freedom","勇敢":"courage / bravery","革命":"revolution","胜利":"victory","希望":"hope","离开":"leaving","未来":"future","新路":"new path","社会":"society","新青年":"new youth"};
+    const PATH_EN = {"path1":"Oppression and obedience","path2":"Resistance and action","path3":"Hope and possible paths"};
     const CODING_KEY = "jia-dh-complete-offline-coding-v1";
     const EDITION_KEY = "jia-dh-complete-offline-edition-v1";
     const SEED_MIGRATION_KEY = "jia-dh-complete-offline-24-records-v1";
@@ -568,7 +584,7 @@ window.JIA_DATA = {"meta":{"title":"家","author":"巴金","source_file":"家txt
         }
       });
       const xTitle = svgEl("text", { x: margin.left + innerW / 2, y: H - 5, "text-anchor": "middle", class: "axis-label" });
-      xTitle.textContent = "章节";
+      xTitle.textContent = "Chapter / 章节";
       svg.appendChild(xTitle);
     }
 
@@ -579,13 +595,13 @@ window.JIA_DATA = {"meta":{"title":"家","author":"巴金","source_file":"家txt
       const container = document.getElementById("chapter-detail");
       container.innerHTML = "";
       const title = document.createElement("strong");
-      title.textContent = `第 ${number} 章`;
+      title.textContent = `Chapter ${number} / 第 ${number} 章`;
       const desc = document.createElement("div");
       desc.className = "hint";
-      desc.textContent = `${formatNumber(ch.length)} 字符；数值已按章节长度标准化。`;
+      desc.textContent = `${formatNumber(ch.length)} Chinese characters / 字符；chart values normalized by chapter length / 图表按章节长度标准化。`;
       const grid = document.createElement("div");
       grid.className = "detail-grid";
-      [["家族权威 / 压迫", ch.counts.authority.total, authorityTerms], ["反叛 / 出路", ch.counts.rebellion.total, rebellionTerms]].forEach(([label, total, terms]) => {
+      [["Family authority / oppression · 家族权威 / 压迫", ch.counts.authority.total, authorityTerms], ["Resistance / possible paths · 反叛 / 出路", ch.counts.rebellion.total, rebellionTerms]].forEach(([label, total, terms]) => {
         const box = document.createElement("div");
         box.className = "detail-box";
         const b = document.createElement("b");
@@ -600,7 +616,7 @@ window.JIA_DATA = {"meta":{"title":"家","author":"巴金","source_file":"家txt
       action.className = "ghost";
       action.type = "button";
       action.style.marginTop = "12px";
-      action.textContent = "到检索页只看本章";
+      action.textContent = "Search this chapter / 检索本章";
       action.addEventListener("click", () => {
         currentChapter = String(number);
         document.getElementById("chapter-filter").value = currentChapter;
@@ -626,10 +642,10 @@ window.JIA_DATA = {"meta":{"title":"家","author":"巴金","source_file":"家txt
         rank.className = "rank-num";
         rank.textContent = index + 1;
         const name = document.createElement("span");
-        name.textContent = `第 ${item.number} 章`;
+        name.textContent = `Chapter ${item.number} / 第 ${item.number} 章`;
         const score = document.createElement("span");
         score.className = "rank-score";
-        score.textContent = `${item.score.toFixed(1)} / 万字`;
+        score.textContent = `${item.score.toFixed(1)} / 10,000 characters`;
         row.append(rank, name, score);
         row.addEventListener("click", () => renderChapterDetail(item.number));
         list.appendChild(row);
@@ -643,7 +659,7 @@ window.JIA_DATA = {"meta":{"title":"家","author":"巴金","source_file":"家txt
         const group = document.createElement("div");
         group.className = "lexicon-group";
         const title = document.createElement("h3");
-        title.textContent = spec.label;
+        title.textContent = `${PATH_EN[category]} / ${spec.label}`;
         const chips = document.createElement("div");
         chips.className = "chips";
         spec.terms.forEach(term => {
@@ -651,6 +667,7 @@ window.JIA_DATA = {"meta":{"title":"家","author":"巴金","source_file":"家txt
           button.type = "button";
           button.className = "chip";
           button.append(document.createTextNode(term));
+          button.setAttribute("aria-label", `${term} — ${TERM_EN[term]}, ${FOCUSED_TOTALS[term]} occurrences; search Chinese text`);
           const count = document.createElement("strong");
           count.textContent = FOCUSED_TOTALS[term];
           button.appendChild(count);
@@ -667,6 +684,40 @@ window.JIA_DATA = {"meta":{"title":"家","author":"巴金","source_file":"家txt
         group.append(title, chips);
         container.appendChild(group);
       });
+      const glossary = document.getElementById("glossary");
+      glossary.innerHTML = "";
+      const heading = document.createElement("h3");
+      heading.textContent = "Chinese–English term glossary / 中英词汇对照表";
+      const hint = document.createElement("p");
+      hint.className = "hint";
+      hint.textContent = "Copy the Chinese term into Search & coding; the English is a contextual gloss, not a substitute for the original. / 复制中文词到检索页；英文仅作语境释义。";
+      const wrap = document.createElement("div");
+      wrap.className = "table-wrap";
+      const table = document.createElement("table");
+      const thead = document.createElement("thead");
+      thead.innerHTML = "<tr><th>中文检索词 / Chinese search term</th><th>English gloss / 英文释义</th><th>Hits / 次数</th></tr>";
+      const tbody = document.createElement("tbody");
+      Object.entries(FOCUSED_LEXICONS).forEach(([category, spec]) => {
+        const groupRow = document.createElement("tr");
+        groupRow.className = "group-row";
+        const label = document.createElement("td");
+        label.colSpan = 3;
+        label.textContent = `${PATH_EN[category]} / ${spec.label}`;
+        groupRow.appendChild(label);
+        tbody.appendChild(groupRow);
+        spec.terms.forEach(term => {
+          const row = document.createElement("tr");
+          [term, TERM_EN[term], FOCUSED_TOTALS[term]].forEach(value => {
+            const cell = document.createElement("td");
+            cell.textContent = value;
+            row.appendChild(cell);
+          });
+          tbody.appendChild(row);
+        });
+      });
+      table.append(thead, tbody);
+      wrap.appendChild(table);
+      glossary.append(heading, hint, wrap);
     }
 
     function findOccurrences(term, chapterFilter = "all") {
