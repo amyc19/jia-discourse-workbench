@@ -49,16 +49,17 @@
   .overview-intro { color:var(--muted); line-height:1.55; margin:0 0 8px; }
   .overview-summary { font-weight:600; margin:12px 0 14px; }
   .overview-legend { display:flex; flex-wrap:wrap; gap:7px 18px; color:var(--muted); font-size:.8rem; margin-bottom:15px; }
-  .legend-key { display:inline-block; width:13px; height:9px; border-radius:2px; margin-right:5px; }
-  .raw-key,.bar-raw { background:#718295; }
-  .core-key,.bar-core { background:#244e80; }
-  .context-key,.bar-context { background:#83add0; }
+  .legend-key { display:inline-block; width:28px; height:15px; border:1px solid #263745; border-radius:2px; margin-right:7px; vertical-align:-3px; }
+  .raw-key,.bar-raw { background:#263745; }
+  .core-key,.bar-core { background:repeating-linear-gradient(-45deg,#244e80 0 3px,#fff 3px 7px); }
+  .context-key,.bar-context { background:radial-gradient(circle at 2px 2px,#244e80 1.5px,#fff 1.6px) 0 0 / 7px 7px; }
   .overview-group { margin:19px 0 7px; font-size:.94rem; color:var(--accent); }
   .overview-row { display:grid; grid-template-columns:110px minmax(0,1fr) minmax(0,1fr); gap:10px; align-items:center; padding:6px 0; border-bottom:1px solid #eef0f2; }
   .overview-term { color:var(--ink); font-weight:600; text-decoration:underline; text-decoration-color:#bdc8d1; text-underline-offset:3px; }
   .bar-caption { display:block; color:var(--muted); font-size:.76rem; font-variant-numeric:tabular-nums; margin-bottom:3px; }
-  .bar-track { display:flex; width:100%; height:10px; background:#eff1f3; border-radius:3px; overflow:hidden; }
+  .bar-track { display:flex; width:100%; height:16px; background:#fff; border:1px solid #6f7b85; border-radius:3px; overflow:hidden; }
   .bar-track > span { display:block; height:100%; }
+  .bar-track > span + span { border-left:1px solid #263745; }
   .overview-table { margin-top:20px; }
   .overview-table summary { color:var(--accent); font-weight:600; cursor:pointer; }
   .table-scroll { overflow-x:auto; margin-top:12px; }
@@ -97,7 +98,7 @@
     </header>
     <section id="overview" class="overview" aria-labelledby="overview-title">
       <h2 id="overview-title">检索与筛选 / From search to coding</h2>
-      <p class="overview-intro">十八个词的原始词次与人工标定后保留的材料。柱长使用同一尺度，便于直接比较。<br><span lang="en">Raw word occurrences and manually retained material for the same 18 terms, shown on one scale.</span></p>
+      <p class="overview-intro">十八个词的原始词次与人工标定后保留的材料。柱长使用同一尺度；实心、斜线和圆点分别表示原始、核心和辅助＋外围。<br><span lang="en">Raw word occurrences and manually retained material for the same 18 terms, shown on one scale. Solid, diagonal stripes, and dots distinguish raw, core, and supporting + peripheral counts.</span></p>
       <p id="overview-summary" class="overview-summary" aria-live="polite"></p>
       <div class="overview-legend">
         <span><i class="legend-key raw-key" aria-hidden="true"></i>原始检索 / Raw</span>
@@ -320,7 +321,7 @@ window.JIA_DATA = {"meta":{"title":"家","author":"巴金","source_file":"家txt
             const track = document.createElement("div");
             track.className = "bar-track";
             track.setAttribute("role", "img");
-            track.setAttribute("aria-label", term + "：" + label + " " + value + " 次");
+            track.setAttribute("aria-label", term + "：" + label + " " + value + " 次" + (label.startsWith("保留") ? "，其中核心 " + counts.core + " 次，辅助与外围 " + (counts.supporting + counts.peripheral) + " 次" : ""));
             segments.forEach(([amount, className]) => {
               const part = document.createElement("span");
               part.className = className;
