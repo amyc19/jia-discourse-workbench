@@ -704,6 +704,7 @@ window.JIA_DATA = {"meta":{"title":"家","author":"巴金","source_file":"家txt
       }
       const available = Object.values(FOCUSED_LEXICONS).flatMap(group => group.terms);
       const selected = available.includes(term);
+      document.getElementById("overview").hidden = selected;
       document.getElementById("lexicons").hidden = selected;
       document.getElementById("records").hidden = !selected;
       if (selected) {
